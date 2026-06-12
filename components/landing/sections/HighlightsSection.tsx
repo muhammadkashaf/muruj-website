@@ -5,23 +5,26 @@ import { ArrowRight } from "lucide-react";
 import SectionHeading from "@/components/landing/ui/SectionHeading";
 import { Container } from "@/components/landing/ui/landingUi";
 
-const tourCards = [
+const destinations = [
   {
     title: "Deosai Plains",
     image: "/images/deosai.png",
-    subtitle: "World's 2nd highest plateau, best Jul–Sep",
+    description: "A vast alpine wilderness where wildflowers, clear skies, and open horizons create an unforgettable sense of scale.",
+    badge: "Most Visited",
     message: "Hi Muruj! I want to know more about Deosai Plains trip.",
   },
   {
     title: "Shangrila Resort",
     image: "/images/shangrila.png",
-    subtitle: "Iconic lakeside retreat, year-round beauty",
+    description: "An iconic lakeside retreat framed by mountain views.",
+    badge: "Family Favorite",
     message: "Hi Muruj! I want to know more about Shangrila Resort trip.",
   },
   {
     title: "Kachura Lakes",
     image: "/images/kachura.png",
-    subtitle: "Twin lakes, crystal blue waters & pine forests",
+    description: "Crystal blue water and pine forests made for quiet exploration.",
+    badge: "Photography Favorite",
     message: "Hi Muruj! I want to know more about Kachura Lakes trip.",
   },
 ];
@@ -35,15 +38,44 @@ export default function HighlightsSection() {
     <section className="bg-sky-soft/55 py-24 sm:py-32">
       <Container>
         <SectionHeading eyebrow="See it before you go" title="Discover Skardu Highlights" description="Get inspired by some of the region's most memorable destinations before choosing your route." />
-        <div className="mt-14 grid gap-5 lg:grid-cols-3">
-          {tourCards.map(({ title, image, subtitle, message }) => (
-            <article key={title} className="group relative h-[340px] overflow-hidden rounded-[1.8rem] transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl">
-              <Image src={image} alt={title} fill sizes="(max-width: 768px) 100vw, 33vw" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-alpine via-alpine/5 to-transparent" />
-              <span className="absolute right-5 top-5 rounded-full border border-white/70 bg-white/85 px-3 py-1.5 text-xs font-semibold text-emerald-700 shadow-sm backdrop-blur">Trip highlight</span>
-              <div className="absolute inset-x-6 bottom-6 flex items-end justify-between text-white"><div><p className="text-xl font-bold">{title}</p><p className="mt-1 text-xs text-white/70">{subtitle}</p></div><button type="button" onClick={() => openWhatsApp(message)} aria-label={`Ask about ${title}`} className="relative w-10 h-10 rounded-full bg-green-500 flex items-center justify-center hover:bg-green-400 transition-all duration-200 hover:scale-110 shrink-0 cursor-pointer"><ArrowRight size={18} className="absolute left-1/2 top-1/2 text-white -translate-x-[52%] -translate-y-1/2" /></button></div>
-            </article>
-          ))}
+
+        <div className="mt-14 grid gap-5 lg:grid-cols-5 lg:grid-rows-2">
+          {destinations.map((destination, index) => {
+            const featured = index === 0;
+
+            return (
+              <article
+                key={destination.title}
+                className={`group relative min-h-[330px] overflow-hidden rounded-[1.8rem] shadow-[0_18px_55px_var(--alpha-forest-08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_70px_var(--alpha-forest-14)] ${featured ? "lg:col-span-3 lg:row-span-2 lg:min-h-[620px]" : "lg:col-span-2 lg:min-h-0"}`}
+              >
+                <Image
+                  src={destination.image}
+                  alt={destination.title}
+                  fill
+                  sizes={featured ? "(max-width: 1024px) 100vw, 60vw" : "(max-width: 1024px) 100vw, 40vw"}
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(to_top,var(--alpha-alpine-92)_0%,var(--alpha-alpine-55)_28%,transparent_68%)]" />
+                <span className="absolute left-5 top-5 rounded-full border border-white/25 bg-alpine/45 px-3 py-1.5 text-xs font-bold text-white backdrop-blur-md">
+                  {destination.badge}
+                </span>
+                <div className={`absolute inset-x-6 bottom-6 flex items-end justify-between gap-5 text-white ${featured ? "sm:inset-x-8 sm:bottom-8" : ""}`}>
+                  <div className="max-w-xl">
+                    <p className={`font-bold tracking-[-0.035em] ${featured ? "text-3xl sm:text-4xl" : "text-2xl"}`}>{destination.title}</p>
+                    <p className={`mt-2 leading-6 text-white/75 ${featured ? "max-w-lg text-sm sm:text-base" : "text-sm"}`}>{destination.description}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => openWhatsApp(destination.message)}
+                    aria-label={`Ask about ${destination.title}`}
+                    className="grid h-11 w-11 shrink-0 cursor-pointer place-items-center rounded-full bg-action text-alpine transition-all duration-300 hover:scale-105 hover:bg-action-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                  >
+                    <ArrowRight size={18} />
+                  </button>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </Container>
     </section>
