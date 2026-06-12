@@ -1,26 +1,447 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --alpine: #06251c;
+  --forest: #0f3d2e;
+  --action: #6cc24a;
+  --action-hover: #7bd255;
+  --mist: #f8faf7;
+  --muted-green: #9bc58a;
+  --sky: #eaf6f8;
+  --ink: #17231f;
+  --white: #ffffff;
+  --black: #000000;
+  --amber-bright: #fbbf24;
+  --amber-deep: #92400e;
+  --amber-soft: #fff6dc;
+  --app-glow: #6bb5c3;
+  --clay: #e28536;
+  --clay-dark: #c56b21;
+  --footer-deep: #041c15;
+  --forest-deep: #0a2e1f;
+  --forest-hover: #15513e;
+  --forest-mid: #123b30;
+  --forest-muted: #3d5a47;
+  --forest-panel: #0b3025;
+  --forest-soft: #0f2318;
+  --google-blue: #4285f4;
+  --google-green: #34a853;
+  --google-red: #ea4335;
+  --google-yellow: #fbbc04;
+  --group-card: #0d3328;
+  --group-cta: #1b5d47;
+  --group-cta-hover: #206a51;
+  --map-canvas: #e4ecdf;
+  --map-marker-blue: #4f91a0;
+  --map-marker-orange: #d88740;
+  --map-marker-sage: #637f73;
+  --nav-panel: #0f2318;
+  --phone-frame: #14251f;
+  --phone-screen: #f4f7f2;
+  --route-end: #f4f9f3;
+  --route-start: #fbfdf9;
+  --safe-end: #eff9eb;
+  --sun: #e3a72f;
+  --sun-strong: #e5aa32;
+  --tag-green: #a8dc91;
+  --weather-bg: #eef7f4;
+  --weather-card: #f3faf8;
+  --whatsapp: #25d366;
+  --whatsapp-hover: #20ba5a;
+  --warm-amber: #e28536;
+  --alpha-action-08: rgba(108, 194, 74, 0.08);
+  --alpha-action-05: rgba(108, 194, 74, 0.05);
+  --alpha-action-12: rgba(108, 194, 74, 0.12);
+  --alpha-action-16: rgba(108, 194, 74, 0.16);
+  --alpha-action-18: rgba(108, 194, 74, 0.18);
+  --alpha-action-20: rgba(108, 194, 74, 0.2);
+  --alpha-action-30: rgba(108, 194, 74, 0.3);
+  --alpha-action-45: rgba(108, 194, 74, 0.45);
+  --alpha-alpine-33: rgba(6, 37, 28, 0.33);
+  --alpha-alpine-12: rgba(6, 37, 28, 0.12);
+  --alpha-alpine-55: rgba(6, 37, 28, 0.55);
+  --alpha-alpine-78: rgba(6, 37, 28, 0.78);
+  --alpha-alpine-92: rgba(6, 37, 28, 0.92);
+  --alpha-alpine-97: rgba(6, 37, 28, 0.97);
+  --alpha-amber-09: rgba(146, 64, 14, 0.09);
+  --alpha-amber-brown-12: rgba(180, 83, 9, 0.12);
+  --alpha-amber-bright-14: rgba(251, 191, 36, 0.14);
+  --alpha-black-16: rgba(0, 0, 0, 0.16);
+  --alpha-black-20: rgba(0, 0, 0, 0.2);
+  --alpha-black-22: rgba(0, 0, 0, 0.22);
+  --alpha-black-24: rgba(0, 0, 0, 0.24);
+  --alpha-black-27: rgba(0, 0, 0, 0.27);
+  --alpha-black-46: rgba(0, 0, 0, 0.46);
+  --alpha-black-60: rgba(0, 0, 0, 0.6);
+  --alpha-clay-12: rgba(226, 133, 54, 0.12);
+  --alpha-forest-035: rgba(15, 61, 46, 0.035);
+  --alpha-forest-045: rgba(15, 61, 46, 0.045);
+  --alpha-forest-08: rgba(15, 61, 46, 0.08);
+  --alpha-forest-09: rgba(15, 61, 46, 0.09);
+  --alpha-forest-10: rgba(15, 61, 46, 0.1);
+  --alpha-forest-11: rgba(15, 61, 46, 0.11);
+  --alpha-forest-12: rgba(15, 61, 46, 0.12);
+  --alpha-forest-13: rgba(15, 61, 46, 0.13);
+  --alpha-forest-14: rgba(15, 61, 46, 0.14);
+  --alpha-forest-15: rgba(15, 61, 46, 0.15);
+  --alpha-forest-16: rgba(15, 61, 46, 0.16);
+  --alpha-forest-18: rgba(15, 61, 46, 0.18);
+  --alpha-forest-20: rgba(15, 61, 46, 0.2);
+  --alpha-forest-22: rgba(15, 61, 46, 0.22);
+  --alpha-forest-30: rgba(15, 61, 46, 0.3);
+  --alpha-forest-34: rgba(15, 61, 46, 0.34);
+  --alpha-forest-92: rgba(15, 61, 46, 0.92);
+  --alpha-glass-shadow: rgba(2, 28, 20, 0.22);
+  --alpha-alpine-22: rgba(6, 37, 28, 0.22);
+  --alpha-ink-64: rgba(23, 35, 31, 0.64);
+  --alpha-map-glow-12: rgba(107, 181, 195, 0.12);
+  --alpha-trust-bg: rgba(10, 46, 31, 0.75);
+  --alpha-white-04: rgba(255, 255, 255, 0.04);
+  --alpha-white-06: rgba(255, 255, 255, 0.06);
+  --alpha-white-07: rgba(255, 255, 255, 0.07);
+  --alpha-white-09: rgba(255, 255, 255, 0.09);
+  --alpha-white-15: rgba(255, 255, 255, 0.15);
+  --alpha-white-16: rgba(255, 255, 255, 0.16);
+  --alpha-white-22: rgba(255, 255, 255, 0.22);
+  --alpha-white-32: rgba(255, 255, 255, 0.32);
+  --alpha-white-70: rgba(255, 255, 255, 0.7);
+  --alpha-white-76: rgba(255, 255, 255, 0.76);
+  --alpha-white-78: rgba(255, 255, 255, 0.78);
+  --alpha-white-95: rgba(255, 255, 255, 0.95);
+  --alpha-white-96: rgba(255, 255, 255, 0.96);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-forest: var(--forest);
+  --color-alpine: var(--alpine);
+  --color-action: var(--action);
+  --color-action-hover: var(--action-hover);
+  --color-amber: var(--warm-amber);
+  --color-amber-bright: var(--amber-bright);
+  --color-amber-deep: var(--amber-deep);
+  --color-amber-soft: var(--amber-soft);
+  --color-app-glow: var(--app-glow);
+  --color-black: var(--black);
+  --color-clay: var(--clay);
+  --color-clay-dark: var(--clay-dark);
+  --color-footer-deep: var(--footer-deep);
+  --color-forest-deep: var(--forest-deep);
+  --color-forest-hover: var(--forest-hover);
+  --color-forest-mid: var(--forest-mid);
+  --color-forest-muted: var(--forest-muted);
+  --color-forest-panel: var(--forest-panel);
+  --color-forest-soft: var(--forest-soft);
+  --color-google-blue: var(--google-blue);
+  --color-google-green: var(--google-green);
+  --color-google-red: var(--google-red);
+  --color-google-yellow: var(--google-yellow);
+  --color-group-card: var(--group-card);
+  --color-group-cta: var(--group-cta);
+  --color-group-cta-hover: var(--group-cta-hover);
+  --color-mist: var(--mist);
+  --color-muted-green: var(--muted-green);
+  --color-map-canvas: var(--map-canvas);
+  --color-map-marker-blue: var(--map-marker-blue);
+  --color-map-marker-orange: var(--map-marker-orange);
+  --color-map-marker-sage: var(--map-marker-sage);
+  --color-nav-panel: var(--nav-panel);
+  --color-phone-frame: var(--phone-frame);
+  --color-phone-screen: var(--phone-screen);
+  --color-route-end: var(--route-end);
+  --color-route-start: var(--route-start);
+  --color-safe-end: var(--safe-end);
+  --color-sky-soft: var(--sky);
+  --color-ink: var(--ink);
+  --color-sun: var(--sun);
+  --color-sun-strong: var(--sun-strong);
+  --color-tag-green: var(--tag-green);
+  --color-weather-bg: var(--weather-bg);
+  --color-weather-card: var(--weather-card);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-hover: var(--whatsapp-hover);
+  --color-white: var(--white);
+  --font-sans: var(--font-body), Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+section[id],
+footer[id] {
+  scroll-margin-top: 5rem;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 4px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--mist);
+  color: var(--ink);
+  font-family: var(--font-body), Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), Arial, sans-serif;
+}
+
+::selection {
+  background: var(--action);
+  color: var(--alpine);
+}
+
+.glass {
+  border: 1px solid var(--alpha-white-16);
+  background: var(--alpha-white-09);
+  box-shadow: 0 18px 60px var(--alpha-glass-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.glass-light {
+  border: 1px solid var(--alpha-forest-09);
+  background: var(--alpha-white-78);
+  box-shadow: 0 20px 70px var(--alpha-forest-09);
+  backdrop-filter: blur(18px);
+}
+
+.topo-pattern {
+  background-image:
+    radial-gradient(circle at 20% 30%, transparent 0 42px, var(--alpha-action-08) 43px 44px, transparent 45px 58px, var(--alpha-action-05) 59px 60px, transparent 61px),
+    radial-gradient(circle at 80% 70%, transparent 0 54px, var(--alpha-white-07) 55px 56px, transparent 57px 72px, var(--alpha-white-04) 73px 74px, transparent 75px);
+  background-size: 260px 260px, 320px 320px;
+}
+
+.route-line {
+  background-image: radial-gradient(circle, currentColor 2px, transparent 2.5px);
+  background-size: 13px 4px;
+  background-repeat: repeat-x;
+}
+
+.qr-pattern {
+  background:
+    linear-gradient(90deg, var(--alpine) 12px, transparent 12px) 0 0 / 24px 24px,
+    linear-gradient(var(--alpine) 12px, transparent 12px) 0 0 / 24px 24px,
+    linear-gradient(90deg, transparent 12px, var(--alpine) 12px 18px, transparent 18px) 0 0 / 24px 24px,
+    var(--white);
+}
+
+.phone-shadow {
+  box-shadow:
+    0 55px 100px var(--alpha-black-46),
+    0 0 0 10px var(--alpha-white-06);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.destination-leaflet-map {
+  cursor: default;
+  font-family: inherit;
+  pointer-events: none;
+}
+
+.destination-leaflet-map .leaflet-tile-pane {
+  filter: saturate(0.72) contrast(0.94) brightness(1.07);
+}
+
+.destination-leaflet-map .leaflet-control-attribution {
+  border-radius: 8px 0 0 0;
+  background: var(--alpha-white-76);
+  color: var(--alpha-ink-64);
+  font-size: 8px;
+  line-height: 14px;
+}
+
+.destination-leaflet-map .leaflet-control-attribution a {
+  color: var(--forest);
+}
+
+.destination-map-marker {
+  align-items: center;
+  display: flex;
+  height: 36px !important;
+  width: auto !important;
+}
+
+.destination-map-marker__pin {
+  align-items: center;
+  background: var(--marker-tone);
+  border: 3px solid var(--alpha-white-96);
+  border-radius: 999px;
+  box-shadow:
+    0 5px 14px var(--alpha-forest-18),
+    inset 0 0 0 1px var(--alpha-white-22);
+  display: flex;
+  flex: 0 0 auto;
+  height: 32px;
+  justify-content: center;
+  position: relative;
+  width: 32px;
+  z-index: 2;
+}
+
+.destination-map-marker__dot {
+  background: var(--alpha-white-95);
+  border-radius: 999px;
+  height: 7px;
+  width: 7px;
+}
+
+.destination-map-marker__camera {
+  border: 2px solid var(--alpine);
+  border-radius: 3px;
+  height: 11px;
+  position: relative;
+  width: 14px;
+}
+
+.destination-map-marker__camera::before {
+  border: 2px solid var(--alpine);
+  border-radius: 999px;
+  content: "";
+  height: 5px;
+  left: 3px;
+  position: absolute;
+  top: 1px;
+  width: 5px;
+}
+
+.destination-map-marker__camera::after {
+  background: var(--alpine);
+  border-radius: 2px 2px 0 0;
+  content: "";
+  height: 3px;
+  left: 2px;
+  position: absolute;
+  top: -4px;
+  width: 5px;
+}
+
+.destination-map-marker__label {
+  background: var(--alpha-white-96);
+  border: 1px solid var(--alpha-forest-08);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--alpha-forest-10);
+  color: var(--alpha-forest-92);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  margin-left: 5px;
+  padding: 6px 7px;
+  white-space: nowrap;
+}
+
+.destination-map-marker__label--active {
+  background: var(--alpine);
+  border-color: var(--alpine);
+  box-shadow: 0 5px 14px var(--alpha-alpine-22);
+  color: var(--white);
+}
+
+.destination-map-marker--active .destination-map-marker__pin {
+  box-shadow:
+    0 8px 20px var(--alpha-forest-20),
+    0 0 0 7px var(--alpha-action-18),
+    inset 0 0 0 1px var(--alpha-white-32);
+  height: 36px;
+  width: 36px;
+}
+
+.destination-map-marker__pulse {
+  animation: destination-map-pulse 2.4s ease-out infinite;
+  background: var(--alpha-action-20);
+  border: 1px solid var(--alpha-action-45);
+  border-radius: 999px;
+  height: 48px;
+  left: -6px;
+  position: absolute;
+  top: -6px;
+  width: 48px;
+}
+
+@keyframes destination-map-pulse {
+  0%,
+  45% {
+    opacity: 0.8;
+    transform: scale(0.72);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-slow {
+  animation: float 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-slow {
+    animation: none;
+  }
+
+  .destination-map-marker__pulse {
+    animation: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .destination-map-marker__label {
+    font-size: 9px;
+    padding: 5px 6px;
+  }
+
+  .destination-map-marker__pin {
+    height: 30px;
+    width: 30px;
+  }
+
+  .destination-map-marker--active .destination-map-marker__pin {
+    height: 34px;
+    width: 34px;
+  }
+
+  .destination-map-marker--optional-label .destination-map-marker__label {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  main > section:not(:first-child) {
+    padding-block: 4rem;
+  }
+
+  .glass,
+  .glass-light {
+    backdrop-filter: blur(12px);
+  }
 }

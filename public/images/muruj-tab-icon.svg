@@ -1,0 +1,6 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="112" fill="#0F3D2E"/>
+  <rect x="38" y="38" width="436" height="436" rx="90" fill="#133F32" stroke="#D4A33B" stroke-width="18"/>
+  <text x="256" y="238" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="106" font-weight="900" letter-spacing="-2">MURUJ</text>
+  <text x="256" y="310" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="800" letter-spacing="8">TRAVELS</text>
+</svg>
